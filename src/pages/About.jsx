@@ -5,14 +5,15 @@ import Section from "../components/ui/Section";
 import Card from "../components/common/Card";
 import { useInView } from "react-intersection-observer";
 
-import Yoda from "../assets/yoda.jpg";
-import Prova from "../assets/prova.webp";
-import Prova1 from "../assets/prova1.jpg";
-import Prova2 from "../assets/prova2.jpg";
-import Prova3 from "../assets/prova3.jpg";
-import Prova4 from "../assets/prova4.jpg";
-import Prova5 from "../assets/prova5.jpg";
-import Torta60 from "../assets/torta60.png";
+import Yoda from "../assets/about/yoda.jpg";
+import Home1 from "../assets/Home1.png";
+import Prova from "../assets/about/about6.jpg";
+import Prova1 from "../assets/about/about1.jpg";
+import Prova2 from "../assets/about/about2.jpg";
+import Prova3 from "../assets/about/about3.jpg";
+import Prova4 from "../assets/about/about4.jpg";
+import Prova5 from "../assets/about/about5.jpg";
+import Torta60 from "../assets/about/torta60.png";
 
 const About = () => {
   return (
@@ -26,7 +27,7 @@ const About = () => {
           dedicandomi con entusiasmo alla programmazione full stack. Se non
           sono al computer puoi trovarmi in palestra, a giocare a beach
           volley o a passare del tempo con gli amici."
-            image={<img src={Prova} alt="Prova" />}
+            image={<img src={Home1} alt="Prova" />}
           />
           <hr />
           <ExpoImage />
@@ -41,7 +42,24 @@ const About = () => {
         <div className="max-w-6xl mx-auto">
           <StartingPage
             semiTitle="Fatti random"
-            description="Sono sempre alla ricerca di nuove tecnologie e strumenti per migliorare il mio flusso di lavoro e le mie competenze."
+            description={
+              <>
+                <ul className="list-disc list-inside mt-2">
+                  <li>Adoro le sfide di qualsiasi tipo.</li>
+                  <li>Mi piace viaggiare in giro per il mondo.</li>
+                  <li>
+                    Il mio anime preferito è Full Metal Alchemist (Brotherhood).
+                  </li>
+                  <li>
+                    Mi piaciono i videogiochi ma anche i giochi da tavolo.
+                  </li>
+                  <li>Sono sempre curioso di imparare cose nuove.</li>
+                  <li>
+                    Certe volte mi piace anche stare sul divano a non far nulla.
+                  </li>
+                </ul>
+              </>
+            }
             image={<img src={Yoda} alt="Yoda" />}
             className="pb-0"
             reverse={true}
@@ -49,14 +67,14 @@ const About = () => {
           <hr />
         </div>
       </Section>
-      <div className="p-10">
+      {/* <div className="p-10">
         <div className="max-w-6xl mx-auto">
           <StartingPage
             semiTitle="Non lo so"
             description="Questa è una sezione di esempio."
           />
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
@@ -83,12 +101,13 @@ const ExpoImage = () => {
       {Image?.map((img, idx) => (
         <motion.div
           key={img.alt}
-          className="w-full md:w-4/12 xl:w-2/12 p-4"
+          className="w-1/2 md:w-4/12 xl:w-2/12 p-4"
           initial={{ opacity: 0, x: 100 }}
           animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
           transition={{ duration: 0.6, delay: idx * 0.15, type: "spring" }}
         >
           <Card
+            className=""
             image={img.src}
             alt={img.alt}
             inView={inView}
@@ -118,8 +137,6 @@ const SkillList = () => {
       <div className="w-full md:w-1/4 text-center md:text-end order-1 md:order-3 mb-3 md:mb-0">
         <h3 className="text-3xl text-gray-800 font-bold">Parte Frontender</h3>
         <ul className="text-xl text-gray-500">
-          <li>HTML</li>
-          <li>CSS</li>
           <li>JavaScript</li>
           <li>React</li>
           <li>Vue</li>

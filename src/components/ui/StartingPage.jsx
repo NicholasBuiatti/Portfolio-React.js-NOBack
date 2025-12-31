@@ -23,7 +23,7 @@ export default function StartingPage({
         <div className="text-center md:w-3/4 md:text-start mb-5">
           <h1 className="text-7xl text-gray-800 font-bold mb-4">{title}</h1>
           <h3 className="text-xl text-gray-500 mb-2">{semiTitle}</h3>
-          <p className="text-sm md:text-base">{description}</p>
+          <div className="text-sm md:text-base">{description}</div>
         </div>
       </motion.div>
       <motion.div
@@ -41,7 +41,7 @@ export default function StartingPage({
 StartingPage.propTypes = {
   title: PropTypes.string.isRequired,
   semiTitle: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
   image: PropTypes.element.isRequired,
   reverse: PropTypes.bool,
 };

@@ -7,7 +7,9 @@ import Section from "../components/ui/Section";
 import ProjectCard from "../features/projects/components/ProjectCard";
 import { Error, Loading, NoResults } from "../components/ui/Error&Loading";
 
-import Prova from "../assets/prova.webp";
+import H1 from "../assets/Home1.png";
+import H2 from "../assets/Home2.png";
+import H3 from "../assets/Home3.png";
 // import cv from "../assets/Nicholas Buiatti CV.pdf";
 
 const Home = () => {
@@ -35,8 +37,8 @@ const Jumbotron = () => {
   }
   return (
     <ImageCompare
-      leftImg={Prova}
-      rightImg={Prova}
+      leftImg={H3}
+      rightImg={H3}
       altLeft="Left Image"
       altRight="Right Image"
     />
@@ -121,7 +123,7 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative h-96 select-none mx-auto"
+      className="relative h-[32rem] select-none mx-auto"
       onMouseMove={handleMove}
       onTouchMove={handleMove}
       initial={{ opacity: 0 }}
@@ -135,20 +137,22 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
       <img
         src={leftImg}
         alt={altLeft}
-        className="w-auto h-full block invert mx-auto relative z-50"
+        className="absolute top-0 left-0 w-full h-full object-contain z-50"
         draggable={false}
+        style={{
+          clipPath: `inset(0 ${100 - divider}% 0 0)`,
+          height: "34.5rem",
+          filter: "grayscale(100%)",
+        }}
       />
       <img
         src={rightImg}
         alt={altRight}
-        className="w-auto h-full block z-50"
+        className="absolute top-0 left-0 w-full h-full object-contain z-50"
         draggable={false}
         style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
           clipPath: `inset(0 0 0 ${divider}%)`,
+          height: "34.5rem",
         }}
       />
       <div className="absolute top-0 left-0 right-0 w-full h-full">
@@ -207,9 +211,9 @@ const StarProjects = () => {
   const [starProjects, setStarProjects] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const { getStarProjects } = useProjectStore();
-  
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: "-100px",
@@ -219,11 +223,11 @@ const StarProjects = () => {
     const loadStarProjects = async () => {
       setIsLoading(true);
       setError(null);
-      
+
       try {
         // Simula un delay di caricamento
-        await new Promise(resolve => setTimeout(resolve, 300));
-        
+        await new Promise((resolve) => setTimeout(resolve, 300));
+
         const projectsData = getStarProjects();
         setStarProjects(projectsData);
       } catch (err) {
@@ -252,7 +256,7 @@ const StarProjects = () => {
   if (starProjects?.projects?.length === 0)
     return <NoResults message="Nessun progetto in evidenza al momento." />;
   console.log(starProjects);
-  
+
   return (
     <section className=" container mx-auto py-12">
       <div className="flex justify-between items-center text-dark">

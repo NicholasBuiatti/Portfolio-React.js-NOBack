@@ -39,9 +39,16 @@ const CarouselProject = ({ images }) => {
 
   const translateX = -(carouselIndex * itemWidth);
 
+  // Funzione per gestire il click su un video
+  const handleVideoClick = (videoRef) => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto my-8">
-      {/* Immagine grande sopra */}
+      {/* Media grande sopra (immagine o video) */}
       <motion.div
         key={images[currentIndex]?.id}
         initial={{ opacity: 0 }}
@@ -49,11 +56,20 @@ const CarouselProject = ({ images }) => {
         transition={{ duration: 0.3 }}
         className="mb-6 flex justify-center"
       >
-        <img
-          src={images[currentIndex]?.image_path}
-          alt={`Project ${currentIndex + 1}`}
-          className="object-contain h-96 rounded-md"
-        />
+        {images[currentIndex]?.type === "video" ? (
+          <video
+            src={images[currentIndex]?.video_path}
+            controls
+            className="object-contain h-96 rounded-md"
+            onClick={() => handleVideoClick(useRef(null))} // Puoi passare un ref se necessario
+          />
+        ) : (
+          <img
+            src={images[currentIndex]?.image_path}
+            alt={`Project ${currentIndex + 1}`}
+            className="object-contain h-96 rounded-md"
+          />
+        )}
       </motion.div>
 
       {/* Carosello di miniature sotto */}
@@ -75,15 +91,27 @@ const CarouselProject = ({ images }) => {
                 style={{ width: `${100 / itemsPerView}%` }}
                 onClick={() => setCurrentIndex(index)}
               >
-                <img
-                  src={item.image_path}
-                  alt={`Project ${index + 1}`}
-                  className={`w-full h-24 object-cover rounded-md cursor-pointer transition-transform ${
-                    index === currentIndex
-                      ? "ring-2 ring-blue-500 scale-105"
-                      : "hover:scale-105"
-                  }`}
-                />
+                {item.type === "video" ? (
+                  <video
+                    src={item.video_path}
+                    className={`w-full h-24 object-cover rounded-md cursor-pointer transition-transform ${
+                      index === currentIndex
+                        ? "ring-2 ring-blue-500 scale-105"
+                        : "hover:scale-105"
+                    }`}
+                    muted // Per evitare autoplay
+                  />
+                ) : (
+                  <img
+                    src={item.image_path}
+                    alt={`Project ${index + 1}`}
+                    className={`w-full h-24 object-cover rounded-md cursor-pointer transition-transform ${
+                      index === currentIndex
+                        ? "ring-2 ring-blue-500 scale-105"
+                        : "hover:scale-105"
+                    }`}
+                  />
+                )}
               </div>
             ))}
           </motion.div>

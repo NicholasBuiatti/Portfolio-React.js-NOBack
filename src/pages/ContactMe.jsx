@@ -7,19 +7,24 @@ import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import StartingPage from "../components/ui/StartingPage";
 import Section from "../components/ui/Section";
+import emailjs from "@emailjs/browser";
 
-import Prova from "../assets/prova.webp";
+import Home1 from "../assets/ContactPhoto.png";
 
 const ContactMe = () => {
-  const { formData, resetForm } = useFormStore();
-  const { sendMessage } = useMessageStore();
+  const { resetForm } = useFormStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      await sendMessage(formData);
-      
+      await emailjs.sendForm(
+        "service_xacyk9u",
+        "template_vruxxfo",
+        e.target,
+        "kVlateoXPr8zyzcre"
+      );
+
       showAlert({
         icon: "success",
         title: "Messaggio inviato!",
@@ -27,7 +32,7 @@ const ContactMe = () => {
         footer: "Verrai ricontatto il prima possibile! GRAZIE",
       });
       resetForm();
-      
+      // e.target.reset();
     } catch (error) {
       showAlert({
         icon: "error",
@@ -35,7 +40,6 @@ const ContactMe = () => {
         text: "Errore nell'invio del messaggio",
         footer: "Riprova o contattami a questa email exemple@hotmail.it",
       });
-      resetForm();
     }
   };
 
@@ -50,14 +54,14 @@ const ContactMe = () => {
               <div className="flex text-white">
                 <div className="w-1/2">
                   <SocialLink
-                    href="https://www.instagram.com/yourusername"
+                    href="https://www.instagram.com/buia93/"
                     iconClass="fa-brands fa-instagram"
                     bgColor="bg-pink-500"
                     hoverBgColor="#e11d48"
                     label="Instagram"
                   />
                   <SocialLink
-                    href="https://github.com/yourusername"
+                    href="https://github.com/NicholasBuiatti"
                     iconClass="fa-brands fa-github"
                     bgColor="bg-gray-500"
                     hoverBgColor="#333"
@@ -66,23 +70,16 @@ const ContactMe = () => {
                 </div>
                 <div className="w-1/2">
                   <SocialLink
-                    href="https://www.linkedin.com/in/yourusername"
+                    href="https://www.linkedin.com/in/nicholas-buiatti-43482821b/"
                     iconClass="fa-brands fa-linkedin-in"
                     bgColor="bg-blue-500"
                     hoverBgColor="#2563eb"
                     label="LinkedIn"
                   />
-                  <SocialLink
-                    href="https://twitter.com/yourusername"
-                    iconClass="fa-brands fa-twitter"
-                    bgColor="bg-blue-300"
-                    hoverBgColor="#38bdf8"
-                    label="Twitter"
-                  />
                 </div>
               </div>
             }
-            image={<img src={Prova} alt="Contattami" />}
+            image={<img src={Home1} alt="Contattami" />}
           />
         </div>
       </Section>
@@ -116,7 +113,7 @@ const FormVisitors = () => {
         <Input
           label="Nome*"
           name="name"
-          value={formData.name}
+          value={formData.name || ""}
           onChange={(e) => setValue("name", e.target.value)}
           required
         />
@@ -124,7 +121,7 @@ const FormVisitors = () => {
           label="Email*"
           type="email"
           name="email"
-          value={formData.email}
+          value={formData.email || ""}
           onChange={(e) => setValue("email", e.target.value)}
           required
         />
@@ -134,7 +131,7 @@ const FormVisitors = () => {
           label="Messaggio*"
           as="textarea"
           name="message"
-          value={formData.message}
+          value={formData.message || ""}
           onChange={(e) => setValue("message", e.target.value)}
           rows={5}
           required

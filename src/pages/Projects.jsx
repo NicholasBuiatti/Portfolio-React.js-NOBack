@@ -21,6 +21,13 @@ const Projects = () => {
           dedicandomi con entusiasmo alla programmazione full stack. Se non
           sono al computer puoi trovarmi in palestra, a giocare a beach
           volley o a passare del tempo con gli amici."
+            image={
+              <img
+                className="w-2/3 md:mx-auto mx-auto"
+                src="/NbPortfolioLogo.png"
+                alt="Prova"
+              />
+            }
           />
         </div>
       </Section>
@@ -41,9 +48,9 @@ const ProjectsList = () => {
   const [projects, setProjects] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const { getFilteredProjects } = useProjectStore();
-  
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: "-100px",
@@ -53,11 +60,10 @@ const ProjectsList = () => {
     const loadProjects = async () => {
       setIsLoading(true);
       setError(null);
-      
+
       try {
-        // Simula un delay di caricamento
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
         const projectsData = getFilteredProjects(currentPage, filters);
         setProjects(projectsData);
       } catch (err) {
@@ -84,18 +90,20 @@ const ProjectsList = () => {
     );
 
   if (!projects || projects.projects.data.length === 0)
-    return <NoResults message="Nessun progetto trovato per i filtri selezionati." />;
+    return (
+      <NoResults message="Nessun progetto trovato per i filtri selezionati." />
+    );
 
   return (
     <>
-      <div>
+      {/* <div>
         <Filter setFilters={setFilters} />
-      </div>
-      <Pagination
+      </div> */}
+      {/* <Pagination
         currentPage={projects.projects.current_page}
         totalPages={projects.projects.last_page}
         onPageChange={setCurrentPage}
-      />
+      /> */}
 
       <div className="flex flex-wrap pt-6" ref={ref}>
         {projects.projects.data &&
