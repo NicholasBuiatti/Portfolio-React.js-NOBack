@@ -15,12 +15,12 @@ import H3 from "../assets/Home3.png";
 const Home = () => {
   return (
     <>
-      <Section>
+      <Section className="p-0">
         <div className="max-w-6xl mx-auto">
           <Jumbotron />
         </div>
       </Section>
-      <div className="p-10">
+      <div>
         <div className="max-w-6xl mx-auto">
           <StarProjects />
         </div>
@@ -30,11 +30,6 @@ const Home = () => {
 };
 
 const Jumbotron = () => {
-  {
-    /* <a href={cv} download={cv} className='hover:scale-105'>
-                <button className='text-3xl p-4 animate-pulse border-2 rounded-full'>CV</button>
-            </a> */
-  }
   return (
     <ImageCompare
       leftImg={H3}
@@ -101,11 +96,19 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
   ];
 
   const generateRandomTechs = (array) => {
-    const grandezza = ["text-base", "text-xl", "text-3xl"];
+    const screenWidth = window.innerWidth;
+    let availableSizes = ["text-base", "text-xl"];
+    if (screenWidth >= 768) {
+      availableSizes.push("text-3xl");
+    }
+    let numberLan = 10;
+    if (screenWidth >= 768) {
+      numberLan = 15;
+    }
     const rimescolo = [...array].sort(() => 0.5 - Math.random());
-    return rimescolo.slice(0, 15).map((tech) => ({
+    return rimescolo.slice(0, numberLan).map((tech) => ({
       name: tech,
-      size: grandezza[Math.floor(Math.random() * grandezza.length)],
+      size: availableSizes[Math.floor(Math.random() * availableSizes.length)],
     }));
   };
 
@@ -113,6 +116,7 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
   const [randomFrontendTechs] = useState(generateRandomTechs(frontendTechs));
 
   const handleMove = (e) => {
+    if (e.touches) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
     const percent = Math.max(0, Math.min(100, 100 - (x / rect.width) * 100));
@@ -123,7 +127,7 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative h-[32rem] select-none mx-auto"
+      className="relative h-[20rem] md:h-[32rem] select-none mx-auto border-b"
       onMouseMove={handleMove}
       onTouchMove={handleMove}
       initial={{ opacity: 0 }}
@@ -141,8 +145,9 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
         draggable={false}
         style={{
           clipPath: `inset(0 ${100 - divider}% 0 0)`,
-          height: "34.5rem",
+          // height: "34.5rem",
           filter: "grayscale(100%)",
+          objectPosition: "bottom",
         }}
       />
       <img
@@ -152,7 +157,8 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
         draggable={false}
         style={{
           clipPath: `inset(0 0 0 ${divider}%)`,
-          height: "34.5rem",
+          // height: "34.5rem",
+          objectPosition: "bottom",
         }}
       />
       <div className="absolute top-0 left-0 right-0 w-full h-full">
@@ -164,7 +170,7 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
             transition={{ duration: 0.1, ease: "easeOut" }}
           >
             <div></div>
-            <h2 className="text-6xl">Back-End</h2>
+            <h2 className="text-3xl md:text-6xl">Back-End</h2>
             <div className="flex flex-wrap-reverse">
               {randomBackendTechs.map((tech, index) => (
                 <span
@@ -184,7 +190,7 @@ const ImageCompare = ({ leftImg, rightImg, altLeft = "", altRight = "" }) => {
             transition={{ duration: 0.1, ease: "easeOut" }}
           >
             <div></div>
-            <h2 className="text-6xl">Front-End</h2>
+            <h2 className="text-3xl md:text-6xl">Front-End</h2>
             <div className="flex flex-wrap-reverse justify-end">
               {randomFrontendTechs.map((tech, index) => (
                 <span
