@@ -21,7 +21,7 @@ export default function StartingPage({
         className="w-full md:w-1/2"
       >
         <div className="text-center md:w-3/4 md:text-start mb-5">
-          <h1 className="text-6xl md:text-7xl text-gray-800 font-bold mb-4">
+          <h1 className="text-5xl md:text-7xl text-gray-800 font-bold mb-4">
             {title}
           </h1>
           <h3 className="text-xl text-gray-500 mb-2">{semiTitle}</h3>
