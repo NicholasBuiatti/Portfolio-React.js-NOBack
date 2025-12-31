@@ -7,10 +7,7 @@ import Section from "../components/ui/Section";
 import ProjectCard from "../features/projects/components/ProjectCard";
 import { Error, Loading, NoResults } from "../components/ui/Error&Loading";
 
-import H1 from "../assets/Home1.png";
-import H2 from "../assets/Home2.png";
 import H3 from "../assets/Home3.png";
-// import cv from "../assets/Nicholas Buiatti CV.pdf";
 
 const Home = () => {
   return (

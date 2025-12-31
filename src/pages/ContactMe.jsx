@@ -11,9 +11,6 @@ import emailjs from "@emailjs/browser";
 
 import Home1 from "../assets/ContactPhoto.png";
 
-/* <a href={cv} download={cv} className='hover:scale-105'>
-                <button className='text-3xl p-4 animate-pulse border-2 rounded-full'>CV</button>
-            </a> */
 const ContactMe = () => {
   const { resetForm } = useFormStore();
 
@@ -167,7 +164,7 @@ const SocialLink = ({
         transition={{ duration: 0.3 }}
       />
       <motion.span
-        className={`text-sm ml-5 transition-colors duration-300 ${textColor}`}
+        className={`text-sm w-[3rem] ml-5 transition-colors duration-300 ${textColor}`}
         variants={{
           hover: { color: hoverTextColor },
         }}

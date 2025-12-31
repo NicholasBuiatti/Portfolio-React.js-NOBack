@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useUiStore } from "../store/uiStore"; // Import the store
 import { SocialLinks } from "./common/SocialLinks";
+import cv from "../assets/CV Nicholas Buiatti.pdf";
 
 const Navbar = () => {
   const { navbarDropdown, toggleNavbarDropdown, closeAllDropdowns } =
@@ -15,6 +16,9 @@ const Navbar = () => {
         <div className="w-12">
           <img className="invert" src="/NbPortfolioLogo.png" alt="Logo" />
         </div>
+        <a href={cv} download={cv} className="hover:scale-105 ms-4">
+          <button className="text-sm p-2 border rounded-xl">Download CV</button>
+        </a>
         <ul className="hidden md:flex w-9/12 md:w-6/12 justify-end ms-auto">
           {routes
             .filter((route) => route.id)
