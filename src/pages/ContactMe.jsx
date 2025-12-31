@@ -164,7 +164,7 @@ const SocialLink = ({
         transition={{ duration: 0.3 }}
       />
       <motion.span
-        className={`text-sm w-[3rem] ml-5 transition-colors duration-300 ${textColor}`}
+        className={`text-sm w-[3rem] ml-3 transition-colors duration-300 ${textColor}`}
         variants={{
           hover: { color: hoverTextColor },
         }}

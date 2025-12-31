@@ -97,7 +97,7 @@ const ExpoImage = () => {
   });
 
   return (
-    <div className="flex flex-wrap px-10" ref={ref}>
+    <div className="hidden md:flex md:flex-wrap px-10" ref={ref}>
       {Image?.map((img, idx) => (
         <motion.div
           key={img.alt}
@@ -131,7 +131,7 @@ const SkillList = () => {
           <li>MySQL</li>
         </ul>
       </div>
-      <div className="mx-auto w-1/2 order-3 md:order-2">
+      <div className="hidden md:block mx-auto md:w-1/2 order-3 md:order-2">
         <img src={Torta60} alt="Torta 40-60" className="w-full h-auto" />
       </div>
       <div className="w-full md:w-1/4 text-center md:text-end order-1 md:order-3 mb-3 md:mb-0">
