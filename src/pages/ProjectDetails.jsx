@@ -102,7 +102,7 @@ const ProjectDetails = () => {
                         ))
                       : "N/A"}
                   </ul>
-                  <div className="col-8">
+                  <div className="col-4">
                     {data.project.github_url && (
                       <p className="mb-2">
                         <a
