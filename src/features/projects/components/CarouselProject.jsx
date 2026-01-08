@@ -39,7 +39,6 @@ const CarouselProject = ({ images }) => {
 
   const translateX = -(carouselIndex * itemWidth);
 
-  // Funzione per gestire il click su un video
   const handleVideoClick = (videoRef) => {
     if (videoRef.current) {
       videoRef.current.play();
@@ -61,7 +60,7 @@ const CarouselProject = ({ images }) => {
             src={images[currentIndex]?.video_path}
             controls
             className="object-contain h-96 rounded-md"
-            onClick={() => handleVideoClick(useRef(null))} // Puoi passare un ref se necessario
+            onClick={() => handleVideoClick(useRef(null))}
           />
         ) : (
           <img
