@@ -16,11 +16,9 @@ const Projects = () => {
         <div className="max-w-6xl mx-auto">
           <StartingPage
             title="portfolio."
-            semiTitle="Sono un Full Stack Developer residente in un bellissimo paesino friulano."
-            description="Dal 2024 ho intrapreso un percorso nel mondo dell’informatica,
-          dedicandomi con entusiasmo alla programmazione full stack. Se non
-          sono al computer puoi trovarmi in palestra, a giocare a beach
-          volley o a passare del tempo con gli amici."
+            semiTitle="Sono orgoglioso di presentarvi i miei progetti."
+            description="In questa sezione raccolgo alcuni dei progetti che ho realizzato durante il mio percorso di formazione in Boolean, insieme a progetti sviluppati in autonomia per esercitazione e approfondimento personale.
+              Ho iniziato a studiare programmazione all’inizio del 2014, e questi lavori rappresentano l’evoluzione delle mie competenze, del mio metodo e del mio approccio allo sviluppo software."
             image={
               <img
                 className="w-2/3 md:mx-auto mx-auto"
